@@ -1,0 +1,24 @@
+version: '3'
+
+volumes:
+  arkade_wallet_node_modules:
+    name: arkade_wallet_node_modules
+    driver: local
+    
+networks:
+  arkade:
+    name: arkade
+    driver: bridge
+
+services:
+  frontend:
+    restart: always
+    build: .
+    command: yarn start
+    ports: 
+      - 3000:3000
+    networks:
+      - arkade
+    volumes:
+      - .:/home/arkade_wallet
+      - arkade_wallet_node_modules:/home/arkade_wallet/node_modules

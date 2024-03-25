@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Retângulo_689" data-name="Retângulo 689" width="42" height="44" transform="translate(0 -0.249)" fill="none" stroke="#5c5ce0" stroke-width="3"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_2075" data-name="Grupo 2075" transform="translate(-8462 -675)">
+    <circle id="Elipse_373" data-name="Elipse 373" cx="60" cy="60" r="60" transform="translate(8462 675)" fill="#fff"/>
+    <g id="Grupo_2074" data-name="Grupo 2074" transform="translate(8501 713.249)">
+      <g id="Grupo_1284" data-name="Grupo 1284" transform="translate(0 0)" clip-path="url(#clip-path)">
+        <path id="Caminho_1984" data-name="Caminho 1984" d="M36.182,14.044v6.379H30.254a3.295,3.295,0,0,0,0,6.589h5.928v6.381A2.182,2.182,0,0,1,34,35.58H4.121a2.182,2.182,0,0,1-2.188-2.188V14.044a1.463,1.463,0,0,1,.054-.409,1.387,1.387,0,0,1,.131-.46,2.16,2.16,0,0,1,2-1.318H34A2.182,2.182,0,0,1,36.182,14.044Z" transform="translate(0.795 4.877)" fill="none" stroke="#5c5ce0" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="Caminho_1985" data-name="Caminho 1985" d="M1.933,15.945V9.33A2.851,2.851,0,0,1,4.974,6.719H9.836" transform="translate(0.795 2.764)" fill="none" stroke="#5c5ce0" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="Caminho_1986" data-name="Caminho 1986" d="M12.023,12.541h-7.5c-1.428,0-2.586-.783-2.586-1.75v-2.2" transform="translate(0.795 3.532)" fill="none" stroke="#5c5ce0" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="Caminho_1987" data-name="Caminho 1987" d="M33.218,15.029l-2.015.632H8.77L7.018,10.1a2.061,2.061,0,0,1,1.344-2.57L28.845,1.1A2.026,2.026,0,0,1,31.4,2.428l3.149,10.043A2.03,2.03,0,0,1,33.218,15.029Z" transform="translate(2.85 0.411)" fill="none" stroke="#5c5ce0" stroke-miterlimit="10" stroke-width="3"/>
+        <path id="Caminho_1988" data-name="Caminho 1988" d="M31.522,18.993v4.456a1.063,1.063,0,0,1-1.067,1.067h-7.5a3.295,3.295,0,1,1,0-6.589h7.5A1.063,1.063,0,0,1,31.522,18.993Z" transform="translate(8.09 7.373)" fill="none" stroke="#5c5ce0" stroke-miterlimit="10" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>
