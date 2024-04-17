@@ -1,100 +1,58 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./first.css";
-import { useNavigate } from "react-router-dom";
-import logo from "../../assets/accessguard.png";
-import { AuthContext } from "../../components/AuthContext/AuthContext";
-import Footer from "../../components/footer/Footer";
 import { GoogleLogin } from "@react-oauth/google";
+import logo from "../../assets/accessguard.png";
+import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-
-const server = process.env.REACT_APP_WALLET_SERVER;
+import { useNavigate } from "react-router";
+import { useAuth } from "../../components/AuthContext/AuthContext";
 
 export default function Login() {
-  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const navigate = useNavigate();
-  const { setAuthState, authState } = useContext(AuthContext);
+  const { setAuthState } = useAuth();
 
-  const [formData, setFormData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const responseMessage = (response) => {
-    console.log(response);
-  };
-  const errorMessage = (error) => {
-    console.log(error);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleLogin = async (e) => {
+  const handleGoogleLogin = async (credentialResponse) => {
     try {
-      // Decode o JWT para obter as informações do usuário
-      const decodedToken = jwtDecode(e.credential);
+      // Decodifica o token JWT para extrair as informações do usuário
+      const { email, name, picture } = jwtDecode(credentialResponse.credential);
 
-      // Acesse as informações do usuário
-      const userData = {
-        email: decodedToken.email,
-        name: decodedToken.name,
-        firstName: decodedToken.given_name,
-        picture: decodedToken.picture,
-      };
-
-      // Verificar se o usuário já está cadastrado no banco
-      const existingUserResponse = await fetch(
-        `${server}/getAccountByEmail/${userData.email}`
+      // Envia os dados do usuário para o backend para verificação e criação se necessário
+      const response = await axios.get(
+        `http://localhost:3001/api/users/getByEmail/${email}`
       );
-      const existingUser = await existingUserResponse.json();
 
-      if (existingUser._id) {
-        // O usuário já existe, proceda com a autenticação
-        // Atualize o contexto de autenticação com as informações do usuário
-        setAuthState({ user: existingUser });
-        // Redirecione diretamente para a página home
+      const idUser = response.data[0]._id;
+
+      // Verifica se o login foi bem-sucedido
+      if (Array.isArray(response.data) && response.data.length === 1) {
+        console.log("Usuário logado com sucesso");
+        setAuthState({ user: { email, name, picture, idUser } });
+        // Redireciona o usuário para a página home
         navigate("/home");
       } else {
-        // O usuário não existe, chame a API para criar a carteira e o usuário
-        const response = await fetch(`${server}/createWalletUser`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            fullName: userData.name, // Use o nome do usuário do Google como fullName
-            email: userData.email,
-            password: "GoogleUser", // Defina uma senha padrão ou deixe em branco, dependendo das suas necessidades
-          }),
-        });
+        // Se o usuário não existir, cria um novo usuário
+        const createUserResponse = await axios.post(
+          `http://localhost:3001/api/users/create`,
+          {
+            nome: name,
+            email: email,
+            telefone: "", // Coloque os valores padrão ou deixe em branco, dependendo da lógica do seu aplicativo
+            endereco: "", // Coloque os valores padrão ou deixe em branco, dependendo da lógica do seu aplicativo
+            fotoPerfil: picture, // Se você quiser usar a foto do Google como foto do perfil, pode passá-la aqui
+          }
+        );
 
-        const userCreated = await response.json();
+        if (createUserResponse.statusText === "Created") {
+          console.log("Usuário criado e logado com sucesso");
 
-        if (response.ok) {
-          // Verificar se o usuário já está cadastrado no banco
-          const existingUserResponse = await fetch(
-            `${server}/getAccountByEmail/${userData.email}`
-          );
-          const existingUser = await existingUserResponse.json();
-          setAuthState({ user: existingUser });
-          // Atualize o contexto de autenticação com as informações do usuário
-          //setAuthState({ user: existingUser });
-          // Redirecione diretamente para a página home
+          // Redirecione o usuário para a página home
           navigate("/home");
         } else {
-          const errorData = await response.json();
-          throw new Error(errorData.error);
+          console.log("Erro ao criar usuário");
         }
       }
     } catch (error) {
-      console.error("Erro ao lidar com o login:", error);
-      // Lidar com erros ou mostrar uma mensagem de erro
-      errorMessage(error);
+      console.error("Erro durante o login:", error);
     }
   };
 
@@ -104,7 +62,6 @@ export default function Login() {
         <div className="arkade-wallet">
           <img src={logo} alt="AccessGuard Logo" />
           <h1 className="wallet-name">
-            {" "}
             Com o AccessGuard, você pode gerenciar facilmente as permissões de
             entrada, criar convites com QR codes seguros e garantir a segurança
             do seu espaço.
@@ -113,17 +70,23 @@ export default function Login() {
         <div className="form-div">
           <div className="first-login-container">
             <h1 className="title-login-name">Bem-vindo ao AccessGuard</h1>
-            <form
-              className="first-login-writeForm"
-              autoComplete="off"
-              onSubmit={handleLogin}
-            >
+            <form className="first-login-writeForm" autoComplete="off">
               <div className="first-login-formGroup">
                 <label className="label-login">
-                  Faça login para acessar o portal seguro de controle de acesso.{" "}
+                  Faça login para acessar o portal seguro de controle de acesso.
                 </label>
-                {/* Botão do Google Sign-In */}
-                <GoogleLogin onSuccess={handleLogin} onError={errorMessage} />
+                <GoogleLogin
+                  type="standard"
+                  theme="outline"
+                  shape="pill"
+                  size="large"
+                  width="250px"
+                  logo_alignment="center"
+                  onSuccess={handleGoogleLogin}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
               </div>
             </form>
           </div>

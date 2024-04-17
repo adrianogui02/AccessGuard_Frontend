@@ -1,17 +1,47 @@
-import React from 'react'
-import './header.css'
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-import coin from '../../assets/coin.png'
+import React from "react";
+import "./Header.css";
+import { Link } from "react-router-dom";
+import logo from "../../assets/accessguard_logo.png";
+import { useAuth } from "../AuthContext/AuthContext";
+
 export default function Header() {
+  const { authState } = useAuth();
+  // Aqui você pode acessar authState.user para obter as informações do usuário logado
+  const { user } = authState;
+  console.log(user);
+
   return (
-    <div className='header section__padding'>
-      <div className="header-content">
-        <div>
-          <h1>Discover, collect, and sell extraordinary NFTs</h1>
-          <img className='shake-vertical' src={coin} alt="" />
-        </div>
+    <div className="header">
+      <div className="header-right">
+        <img src={logo} alt="Logo" className="logo" />
+      </div>
+      <div className="header-center">
+        <Link to="/moradores" className="header-link">
+          Moradores
+        </Link>
+        <Link to="/veiculos" className="header-link">
+          Veículos
+        </Link>
+        <Link to="/reservas" className="header-link">
+          Reservas
+        </Link>
+        <Link to="/invite" className="header-link">
+          Convites
+        </Link>
+      </div>
+
+      <div className="header-left">
+        {/* Exibir o nome do usuário */}
+        {user && user.name && (
+          <Link to="/perfil" className="user-name">
+            {user.name}
+          </Link>
+        )}
+        {/* Exibir a foto do usuário */}
+        {user && user.picture && (
+          <img src={user.picture} alt="User" className="user-photo" />
+        )}
       </div>
     </div>
-  )
+  );
 }

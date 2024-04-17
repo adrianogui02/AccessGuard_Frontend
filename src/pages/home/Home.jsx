@@ -1,13 +1,11 @@
-import React from 'react';
-import {Explorer, Footer } from '../../components'
-import { TokenProvider } from '../../components/TokenContext/TokenContext';
+import React from "react";
+import { Footer, Header } from "../../components";
 
 export default function Home() {
-
-  return <div>
-    <TokenProvider>
-      <Explorer />
-    </TokenProvider>
-    <Footer/>
-  </div>;
-};
+  return (
+    <div>
+      <Header />
+      {/* <Footer /> */}
+    </div>
+  );
+}
