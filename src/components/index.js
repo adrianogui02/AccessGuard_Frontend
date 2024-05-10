@@ -8,3 +8,4 @@ export { default as TokenList } from "./tokenList/tokenList";
 export { default as HistoryList } from "./historyList/historyList";
 export { default as Header } from "./Header/header";
 export { default as Invitations } from "./Invite/Invite";
+export { default as FacialRecognition } from "./FacialRecognition/facialRecognition";

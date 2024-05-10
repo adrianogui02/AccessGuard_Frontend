@@ -97,7 +97,9 @@ const Invitations = () => {
               required
             />
           </div>
-          <button type="submit">Gerar Convite</button>
+          <div className="div-button-create-invite">
+            <button type="submit">Gerar Convite</button>
+          </div>
         </form>
       </div>
     </div>
