@@ -28,7 +28,7 @@ const InviteSuccess = () => {
 
   const deactivateQRCode = async (uuid) => {
     try {
-      await axios.post(`http://localhost:3001/api/invite/deactivate/${uuid}`);
+      await axios.post(`http://localhost:3001/api/invite/desactive/${uuid}`);
       console.log("QR Code desativado com sucesso!");
     } catch (error) {
       console.error("Erro ao desativar QR Code:", error);
