@@ -5,7 +5,7 @@
 }
 
 .invitations-list {
-  max-height: 400px; /* Ajuste conforme necessário */
+  max-height: 480px; /* Ajuste conforme necessário */
   overflow-y: auto; /* Permite rolagem vertical quando o conteúdo excede a altura máxima */
   margin-top: 20px;
   padding: 10px;
@@ -53,7 +53,16 @@
   align-items: end;
 }
 .qrcode-item {
-  width: 80px;
+  width: 105px;
+  border-radius: 5%;
+}
+strong.strong {
+  color: #0d141a;
+  font-size: larger;
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  width: 40px;
 }
 .invitations-form {
   text-align: center;
@@ -80,10 +89,12 @@
   width: 100%;
   padding: 8px;
   font-family: var(--font-family);
+  color: #fff;
   margin-bottom: 30px;
-  border: none;
+  border: 1px solid transparent;
   background-color: #0d141a;
   border-radius: 10px;
+  outline: none;
 }
 .invitations-form input[type="text"]:focus {
   border: 1px solid #6e9982;
@@ -102,6 +113,7 @@
   font-weight: 600;
   color: #0d141a;
   padding: 10px 20px;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -109,4 +121,14 @@
 
 .invitations-form button:hover {
   background-color: #6e9982;
+}
+
+.icon-sucess-popup {
+  width: 130px;
+  margin: 20px;
+}
+.text-sucess-popup {
+  margin: 20px;
+  font-size: 25px;
+  font-weight: 500;
 }

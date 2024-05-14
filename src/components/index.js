@@ -9,3 +9,6 @@ export { default as HistoryList } from "./historyList/historyList";
 export { default as Header } from "./header/Header";
 export { default as Invitations } from "./Invite/Invite";
 export { default as FacialRecognition } from "./FacialRecognition/facialRecognition";
+export { default as Popup } from "./Popup/Popup";
+export { default as InviteDetails } from "./InviteDetails/InviteDetails";
+export { default as InviteSuccess } from "./InviteSuccess/InviteSuccess";

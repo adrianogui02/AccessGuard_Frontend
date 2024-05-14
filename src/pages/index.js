@@ -7,3 +7,5 @@ export { default as MyNFT } from "./myNFT/MyNFT";
 export { default as MyToken } from "./myToken/myToken";
 export { default as First } from "./first/First";
 export { default as Invite } from "./invite/Invite";
+export { default as InviteDetails } from "./invateDetails/InviteDetails";
+export { default as InviteSuccess } from "./inviteSuccess/InviteSuccess";
