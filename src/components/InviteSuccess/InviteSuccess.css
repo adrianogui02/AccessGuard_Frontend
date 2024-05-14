@@ -66,9 +66,9 @@
   font-size: 17px;
 }
 
-.invite-qrcode {
+.invite-success-icon {
   display: block;
   margin: 40px auto;
-  width: 250px;
+  width: 150px;
   border-radius: 20px;
 }

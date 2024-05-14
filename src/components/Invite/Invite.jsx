@@ -19,7 +19,6 @@ const Invitations = () => {
   const [formData, setFormData] = useState({
     numeroTelefoneConvidado: "",
     nomeConvidado: "",
-    codigoQR: "https://accessguard.vercel.app/",
     validoAte: new Date(
       new Date().getTime() + 24 * 60 * 60 * 1000
     ).toISOString(),
@@ -53,7 +52,6 @@ const Invitations = () => {
         {
           numeroTelefoneConvidado: formData.numeroTelefoneConvidado,
           nomeConvidado: formData.nomeConvidado,
-          codigoQR: formData.codigoQR,
           validoAte: formData.validoAte,
           criador: formData.criador,
         }

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./InviteSuccess.css"; // Assegure que o caminho do CSS está correto
 import logo from "../../assets/accessguard_logo.png";
+import OkIcon from "../../assets/Icons/ok-icon.svg";
 
 const InviteSuccess = () => {
   const [invitation, setInvitation] = useState(null);
@@ -15,6 +16,8 @@ const InviteSuccess = () => {
           `http://localhost:3001/api/invite/getByUUID/${uuid}`
         );
         setInvitation(response.data);
+        // Chame a função para desativar o QR Code
+        deactivateQRCode(uuid);
       } catch (error) {
         console.error("Erro ao buscar convite:", error);
       }
@@ -22,6 +25,15 @@ const InviteSuccess = () => {
 
     fetchInvitation();
   }, [uuid]);
+
+  const deactivateQRCode = async (uuid) => {
+    try {
+      await axios.post(`http://localhost:3001/api/invite/deactivate/${uuid}`);
+      console.log("QR Code desativado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao desativar QR Code:", error);
+    }
+  };
 
   if (!invitation) {
     return (
@@ -38,15 +50,15 @@ const InviteSuccess = () => {
         <img src={logo} className="invite-details-logo" alt="" />
         <div className="invite-details-content">
           <img
-            src={invitation.urlQRCode}
+            src={OkIcon}
             alt="QR Code do Convite"
-            className="invite-qrcode"
+            className="invite-success-icon"
           />
-          <p className="invite-detail">Escaneie o QR Code para Acesso</p>
+          <p className="invite-detail">Escaneamento bem-sucedido!</p>
           <p className="invite-detail">
             <strong>
-              Use seu dispositivo para escanear o QR code abaixo e autorizar seu
-              acesso
+              Parabéns! Você escaneou com sucesso o QR code e seu acesso foi
+              autorizado
             </strong>
           </p>
         </div>
