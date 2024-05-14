@@ -19,7 +19,7 @@ const Invitations = () => {
   const [formData, setFormData] = useState({
     numeroTelefoneConvidado: "",
     nomeConvidado: "",
-    codigoQR: "www.instagram.com",
+    codigoQR: "https://accessguard.vercel.app/",
     validoAte: new Date(
       new Date().getTime() + 24 * 60 * 60 * 1000
     ).toISOString(),
