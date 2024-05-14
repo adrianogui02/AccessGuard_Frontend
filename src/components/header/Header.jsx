@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css";
+import "./header.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/accessguard_logo.png";
 import { useAuth } from "../AuthContext/AuthContext";
@@ -13,7 +13,9 @@ export default function Header() {
   return (
     <div className="header">
       <div className="header-right">
-        <img src={logo} alt="Logo" className="logo" />
+        <Link to="/home">
+          <img src={logo} alt="Logo" className="logo" />
+        </Link>
       </div>
       <div className="header-center">
         <Link to="/moradores" className="header-link">

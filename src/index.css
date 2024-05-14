@@ -20,23 +20,18 @@
   --color-footer: #24252d;
 }
 /* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-  scrollbar-width: auto;
-  scrollbar-color: #2a2d3a #ffffff;
-}
 
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
-  width: 14px;
+  width: 10px;
 }
 
 *::-webkit-scrollbar-track {
-  background: transparent;
+  background: #24252d;
+  border-radius: 10px;
 }
 
 *::-webkit-scrollbar-thumb {
-  background: var(--color-card);
+  background-color: #6e9982;
   border-radius: 10px;
-  border: 3px none #ffffff;
 }

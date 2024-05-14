@@ -8,6 +8,7 @@ const Invitations = () => {
   // Aqui você pode acessar authState.user para obter as informações do usuário logado
   const { user } = authState;
   console.log("user Context", user);
+  const userID = user.idUser;
   const [invitations, setInvitations] = useState([]);
   const [formData, setFormData] = useState({
     nome: "",
@@ -18,9 +19,10 @@ const Invitations = () => {
   const loadInvitations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/invite/getByUser/${user.idUser}`
+        `http://localhost:3001/api/invite/getByUser/${userID}`
       );
       console.log("Invites", response);
+      console.log(invitations);
       setInvitations(response.data);
     } catch (error) {
       console.error("Erro ao carregar convites:", error);
@@ -61,16 +63,26 @@ const Invitations = () => {
   return (
     <div className="invitations-container">
       {/* Lista de convites ativos */}
-      <div className="invitations-list">
+      <div className="invitations">
         <h2>Convites Ativos</h2>
-        <ul>
+        <div className="invitations-list">
           {invitations.map((invitation, index) => (
-            <li key={index}>
-              {/* Exibir detalhes do convite */}
-              Nome: {invitation.nome}, Telefone: {invitation.telefone}
-            </li>
+            <div key={index} className="invitation-item">
+              <div className="invitations-item-left">
+                {/* Exibir detalhes do convite */}
+                <p>
+                  <strong>Nome</strong> {invitation.nomeConvidado}
+                </p>
+                <p>
+                  <strong>Telefone</strong> {invitation.numeroTelefoneConvidado}
+                </p>
+              </div>
+              <div className="invitations-item-right">
+                <img src={invitation.urlQRCode} className="qrcode-item" />
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
 
       {/* Formulário para criar um novo convite */}
@@ -78,7 +90,7 @@ const Invitations = () => {
         <h2>Gerar Convite</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Nome:</label>
+            <label>Nome</label>
             <input
               type="text"
               name="nome"
@@ -88,7 +100,7 @@ const Invitations = () => {
             />
           </div>
           <div>
-            <label>Telefone:</label>
+            <label>Telefone</label>
             <input
               type="text"
               name="telefone"

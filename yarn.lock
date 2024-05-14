@@ -4786,7 +4786,7 @@ express@^4.17.1:
 
 face-api.js@^0.22.2:
   version "0.22.2"
-  resolved "https://registry.npmjs.org/face-api.js/-/face-api.js-0.22.2.tgz"
+  resolved "https://registry.yarnpkg.com/face-api.js/-/face-api.js-0.22.2.tgz#5accbf7e53b1569685d116a7e18dbc4800770d39"
   integrity sha512-9Bbv/yaBRTKCXjiDqzryeKhYxmgSjJ7ukvOvEBy6krA0Ah/vNBlsf7iBNfJljWiPA8Tys1/MnB3lyP2Hfmsuyw==
   dependencies:
     "@tensorflow/tfjs-core" "1.7.0"

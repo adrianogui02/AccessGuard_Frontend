@@ -5,18 +5,60 @@
 }
 
 .invitations-list {
-  background-color: chartreuse;
+  max-height: 400px; /* Ajuste conforme necessário */
+  overflow-y: auto; /* Permite rolagem vertical quando o conteúdo excede a altura máxima */
+  margin-top: 20px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--font-family);
+}
+.invitations {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   width: 50%;
   font-family: var(--font-family);
 }
+.invitations-list .invitation-item {
+  margin-bottom: 15px;
+  width: 70%;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #6e9982;
+}
 
+.invitations-item-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 50%;
+}
+.invitations-item-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  align-items: end;
+}
+.qrcode-item {
+  width: 80px;
+}
 .invitations-form {
   text-align: center;
   color: #fff;
   display: flex;
-  justify-content: center;
   flex-direction: column;
   width: 50%;
   font-family: var(--font-family);
