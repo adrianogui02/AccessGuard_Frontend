@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css";
+import "./header.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/accessguard_logo.png";
 import { useAuth } from "../AuthContext/AuthContext";
