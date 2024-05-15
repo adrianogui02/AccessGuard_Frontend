@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import "./InviteDetails.css"; // Assegure que o caminho do CSS está correto
+import { useParams, useNavigate } from "react-router-dom";
+import "./InviteDetails.css";
 import logo from "../../assets/accessguard_logo.png";
 
 const InviteDetails = () => {
   const [invitation, setInvitation] = useState(null);
   const { uuid } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInvitation = async () => {
@@ -15,13 +16,20 @@ const InviteDetails = () => {
           `https://accessguardbackend-production.up.railway.app/api/invite/getByUUID/${uuid}`
         );
         setInvitation(response.data);
+
+        // Verifica se o convite não é ativo e redireciona
+        if (response.data && !response.data.ativo) {
+          navigate(`/QRCode/Failed/${uuid}`); // Substitua "/path-to-invalid-invite-page" pelo caminho correto
+        }
       } catch (error) {
         console.error("Erro ao buscar convite:", error);
+        // Opcional: adicione um tratamento ou redirecionamento também para falhas de fetch
+        navigate("/error-page"); // Supondo que você tenha uma página de erro
       }
     };
 
     fetchInvitation();
-  }, [uuid]);
+  }, [uuid, navigate]);
 
   if (!invitation) {
     return (

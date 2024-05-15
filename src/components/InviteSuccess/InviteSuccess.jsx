@@ -16,6 +16,8 @@ const InviteSuccess = () => {
           `https://accessguardbackend-production.up.railway.app/api/invite/getByUUID/${uuid}`
         );
         setInvitation(response.data);
+        // Chame a função para desativar o QR Code
+        deactivateQRCode(uuid);
       } catch (error) {
         console.error("Erro ao buscar convite:", error);
       }
@@ -32,9 +34,6 @@ const InviteSuccess = () => {
       console.error("Erro ao desativar QR Code:", error);
     }
   };
-
-  // Chame a função para desativar o QR Code
-  deactivateQRCode(uuid);
 
   if (!invitation) {
     return (
