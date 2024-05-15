@@ -32,7 +32,7 @@ const Invitations = () => {
       const response = await axios.get(
         `https://accessguardbackend-production.up.railway.app/api/invite/getByUser/${userID}`
       );
-      const activeInvites = response.data.filter((invite) => invite.isActive); // Filtra por convites ativos
+      const activeInvites = response.data.filter((invite) => invite.ativo); // Filtrando por convites ativos
       setInvitations(activeInvites);
     } catch (error) {
       console.error("Erro ao carregar convites:", error);
