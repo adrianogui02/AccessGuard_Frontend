@@ -3,6 +3,9 @@ import axios from "axios";
 import InputMask from "react-input-mask";
 import { useAuth } from "../AuthContext/AuthContext";
 import "./Residents.css";
+import Popup from "../Popup/Popup";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../FirebaseStorage";
 
 const Residents = () => {
   const { authState } = useAuth();
@@ -16,9 +19,13 @@ const Residents = () => {
     fotoPreview: null,
   });
   const [residents, setResidents] = useState([]);
+  const [selectedResident, setSelectedResident] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  console.log("Residents: ", residents);
-  console.log("residentData: ", residentData);
+  const [popupContent, setPopupContent] = useState(null);
+
+  useEffect(() => {
+    loadResidents();
+  }, []);
 
   const loadResidents = async () => {
     try {
@@ -31,9 +38,32 @@ const Residents = () => {
     }
   };
 
-  useEffect(() => {
-    loadResidents();
-  }, []);
+  const handleResidentClick = (resident) => {
+    setSelectedResident(resident);
+    setPopupContent(
+      <>
+        <div className="popup-resident-title">
+          <h3>Detalhes do Morador</h3>
+        </div>
+        <img
+          className="popup-resident-img"
+          src={resident.foto}
+          alt="Foto do Morador"
+        />
+        <div className="popup-resident-content">
+          <p>{resident.nome}</p>
+          <p>{resident.email}</p>
+          <p>{resident.celular}</p>
+        </div>
+      </>
+    );
+    setShowPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+    setSelectedResident(null);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -45,12 +75,12 @@ const Residents = () => {
           nome: residentData.nome,
           email: residentData.email,
           celular: residentData.celular,
-          foto: residentData.fotoPreview,
+          foto: residentData.foto,
           usuario: userID,
         }
       );
       console.log("Residente cadastrado com sucesso:", response.data);
-      loadResidents(); // Recarrega a lista após adicionar
+      loadResidents();
     } catch (error) {
       console.error("Erro ao cadastrar residente:", error);
     }
@@ -64,29 +94,83 @@ const Residents = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setResidentData({
-        ...residentData,
-        foto: file,
-        fotoPreview: URL.createObjectURL(file),
-      });
-      setShowPopup(true);
-    }
-  };
+      const storageRef = ref(storage, `photos/${residentData.nome}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          console.error("Error uploading file:", error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setResidentData((prevState) => ({
+              ...prevState,
+              foto: downloadURL,
+              fotoPreview: URL.createObjectURL(file),
+            }));
+            setPopupContent(
+              <>
+                <h3>Visualização de Imagem</h3>
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt="Preview"
+                  className="preview-image"
+                />
+              </>
+            );
+            setShowPopup(true);
+          });
+        }
+      );
+    } else {
+      console.log("Nenhum arquivo selecionado");
+    }
   };
 
   return (
     <div className="residents-container">
-      <div className="residents-list">
-        {/* Aqui você pode listar os moradores cadastrados */}
+      <div className="residents">
+        <h2>Moradores Cadastrados</h2>
+        <div className="residents-list">
+          {residents.map((resident, index) => (
+            <div
+              key={index}
+              className="resident-item"
+              onClick={() => handleResidentClick(resident)}
+            >
+              <div className="residents-item-left">
+                <p>
+                  <strong className="strong">Nome</strong> {resident.nome}
+                </p>
+                <p>
+                  <strong className="strong">Email</strong>
+                  {resident.email}
+                </p>
+              </div>
+              <div className="residents-item-right">
+                <img src={resident.foto} className="resident-image" alt="" />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {showPopup && (
+        <Popup isOpen={showPopup} close={handleClosePopup}>
+          {popupContent}
+        </Popup>
+      )}
       <div className="residents-form">
         <h2>Adicionar Morador</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Nome do Morador</label>
+            <label>Nome</label>
             <input
               type="text"
               name="nome"
@@ -96,7 +180,7 @@ const Residents = () => {
             />
           </div>
           <div>
-            <label>Email do Morador</label>
+            <label>Email</label>
             <input
               type="email"
               name="email"
@@ -106,7 +190,7 @@ const Residents = () => {
             />
           </div>
           <div>
-            <label>Celular do Morador</label>
+            <label>Celular</label>
             <InputMask
               mask="(99) 99999-9999"
               value={residentData.celular}
@@ -136,19 +220,6 @@ const Residents = () => {
           </div>
         </form>
       </div>
-      {showPopup && (
-        <div className="popup">
-          <div className="popup-inner">
-            <h3>Visualização de Imagem</h3>
-            <img
-              src={residentData.fotoPreview}
-              alt="Preview"
-              className="preview-image"
-            />
-            <button onClick={handleClosePopup}>Voltar</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

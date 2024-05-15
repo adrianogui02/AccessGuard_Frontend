@@ -3,6 +3,15 @@
   flex-direction: row;
   margin-top: 20px;
 }
+.residents {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  font-family: var(--font-family);
+}
 
 .residents-list {
   max-height: 480px;
@@ -11,7 +20,7 @@
   padding: 10px;
   color: #fff;
   text-align: center;
-  width: 50%; /* Ajuste a largura conforme necessário */
+  width: 100%; /* Ajuste a largura conforme necessário */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -25,9 +34,53 @@
   border: none;
   border-radius: 5px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: start;
   background-color: #6e9982;
+}
+
+.residents-item-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 50%;
+}
+.residents-item-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  align-items: end;
+}
+.resident-image {
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  border: 3px solid #2c4853;
+  object-fit: cover;
+  object-position: center; /* Ajusta o posicionamento da imagem no centro */
+}
+
+.popup-resident-title {
+  margin-top: 30px;
+}
+
+.popup-resident-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center; /* Ajusta o posicionamento da imagem no centro */
+  border: 3px solid #5e8696;
+  border-radius: 50%;
+  margin: 40px;
+}
+.popup-resident-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px;
 }
 
 .residents-form {

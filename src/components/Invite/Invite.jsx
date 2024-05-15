@@ -112,7 +112,7 @@ const Invitations = () => {
         <h2>Gerar Convite</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Nome do Convidado</label>
+            <label>Nome</label>
             <input
               type="text"
               name="nomeConvidado"
@@ -120,7 +120,7 @@ const Invitations = () => {
               onChange={handleChange}
               required
             />
-            <label>Telefone do Convidado</label>
+            <label>Celular</label>
             <InputMask
               mask="(99) 99999-9999"
               value={formData.numeroTelefoneConvidado}
