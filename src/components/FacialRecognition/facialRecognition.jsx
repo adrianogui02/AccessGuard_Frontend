@@ -21,7 +21,7 @@ function FacialRecognition() {
 
   React.useEffect(() => {
     const loadModels = async () => {
-      const MODEL_URL = "/models";
+      const MODEL_URL = "/Models";
       await Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
         faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
