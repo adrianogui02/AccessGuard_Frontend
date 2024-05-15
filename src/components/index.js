@@ -12,3 +12,4 @@ export { default as FacialRecognition } from "./FacialRecognition/facialRecognit
 export { default as Popup } from "./Popup/Popup";
 export { default as InviteDetails } from "./InviteDetails/InviteDetails";
 export { default as InviteSuccess } from "./InviteSuccess/InviteSuccess";
+export { default as InviteFailed } from "./InviteFailed/InviteFailed";
