@@ -6,15 +6,15 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div>
-      <Routes>
-        <AuthProvider>
+      <AuthProvider>
+        <Routes>
           <Route path="/" element={<First />} />
           <Route path="/home" element={<Home />} />
           <Route path="/invite" element={<Invite />} />
-        </AuthProvider>
-        <Route path="/QRCode/Details/:uuid" element={<InviteDetails />} />
-        <Route path="/QRCode/Success/:uuid" element={<InviteSuccess />} />
-      </Routes>
+          <Route path="/QRCode/Details/:uuid" element={<InviteDetails />} />
+          <Route path="/QRCode/Success/:uuid" element={<InviteSuccess />} />
+        </Routes>
+      </AuthProvider>
     </div>
   );
 }
