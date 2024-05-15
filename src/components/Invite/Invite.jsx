@@ -30,7 +30,7 @@ const Invitations = () => {
   const loadInvitations = async () => {
     try {
       const response = await axios.get(
-        `https://accessguardbackend-production.up.railway.app/api/invite/getByUser/${userID}`
+        `${process.env.REACT_APP_API_URL}/api/invite/getByUser/${userID}`
       );
       const activeInvites = response.data.filter((invite) => invite.ativo); // Filtrando por convites ativos
       setInvitations(activeInvites);
@@ -43,7 +43,7 @@ const Invitations = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "https://accessguardbackend-production.up.railway.app/api/invite/create",
+        `${process.env.REACT_APP_API_URL}/api/invite/create`,
         {
           numeroTelefoneConvidado: formData.numeroTelefoneConvidado,
           nomeConvidado: formData.nomeConvidado,

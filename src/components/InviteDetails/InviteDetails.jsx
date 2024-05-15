@@ -13,7 +13,7 @@ const InviteDetails = () => {
     const fetchInvitation = async () => {
       try {
         const response = await axios.get(
-          `https://accessguardbackend-production.up.railway.app/api/invite/getByUUID/${uuid}`
+          `${process.env.REACT_APP_API_URL}/api/invite/getByUUID/${uuid}`
         );
         setInvitation(response.data);
 
