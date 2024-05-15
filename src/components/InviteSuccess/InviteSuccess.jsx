@@ -13,7 +13,7 @@ const InviteSuccess = () => {
     const fetchInvitation = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/api/invite/getByUUID/${uuid}`
+          `https://accessguardbackend-production.up.railway.app/api/invite/getByUUID/${uuid}`
         );
         setInvitation(response.data);
         // Chame a função para desativar o QR Code
@@ -28,7 +28,9 @@ const InviteSuccess = () => {
 
   const deactivateQRCode = async (uuid) => {
     try {
-      await axios.post(`http://localhost:3001/api/invite/desactive/${uuid}`);
+      await axios.post(
+        `https://accessguardbackend-production.up.railway.app/api/invite/desactive/${uuid}`
+      );
       console.log("QR Code desativado com sucesso!");
     } catch (error) {
       console.error("Erro ao desativar QR Code:", error);

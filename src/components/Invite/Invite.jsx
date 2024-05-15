@@ -33,7 +33,7 @@ const Invitations = () => {
   const loadInvitations = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/api/invite/getByUser/${userID}`
+        `https://accessguardbackend-production.up.railway.app/api/invite/getByUser/${userID}`
       );
       console.log("Invites", response);
       console.log(invitations);
@@ -48,7 +48,7 @@ const Invitations = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/invite/create",
+        "https://accessguardbackend-production.up.railway.app/api/invite/create",
         {
           numeroTelefoneConvidado: formData.numeroTelefoneConvidado,
           nomeConvidado: formData.nomeConvidado,

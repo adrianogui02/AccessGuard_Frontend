@@ -28,7 +28,6 @@ function FacialRecognition() {
         faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
         faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
         faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
-        faceapi.nets.tinyYolov2.loadFromUri(MODEL_URL),
       ]);
       setModelsLoaded(true);
     };
