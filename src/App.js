@@ -6,6 +6,7 @@ import {
   InviteDetails,
   InviteSuccess,
   InviteFailed,
+  Residents,
 } from "./pages";
 import { AuthProvider } from "../src/components/AuthContext/AuthContext"; // Importe o AuthProvider
 import { Routes, Route } from "react-router-dom";
@@ -16,11 +17,12 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<First />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/invite" element={<Invite />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Invites" element={<Invite />} />
           <Route path="/QRCode/Details/:uuid" element={<InviteDetails />} />
           <Route path="/QRCode/Success/:uuid" element={<InviteSuccess />} />
           <Route path="/QRCode/Failed/:uuid" element={<InviteFailed />} />
+          <Route path="/Residents" element={<Residents />} />
         </Routes>
       </AuthProvider>
     </div>

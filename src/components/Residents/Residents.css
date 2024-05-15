@@ -1,0 +1,167 @@
+.residents-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+
+.residents-list {
+  max-height: 480px;
+  overflow-y: auto;
+  margin-top: 20px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  width: 50%; /* Ajuste a largura conforme necessário */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--font-family);
+}
+
+.residents-list .resident-item {
+  margin-bottom: 15px;
+  width: 70%;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background-color: #6e9982;
+}
+
+.residents-form {
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-family: var(--font-family);
+}
+
+.residents-form form {
+  margin-top: 20px;
+  text-align: left;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.residents-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.residents-form input[type="text"],
+.residents-form input[type="email"] {
+  width: 100%;
+  padding: 8px;
+  font-family: var(--font-family);
+  color: #fff;
+  margin-bottom: 30px;
+  border: 1px solid transparent;
+  background-color: #0d141a;
+  border-radius: 10px;
+  outline: none;
+}
+
+.residents-form input[type="text"]:focus,
+.residents-form input[type="email"]:focus {
+  border: 1px solid #6e9982;
+}
+
+.div-button-create-resident {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.residents-form button {
+  background-color: #a3d4bc;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 20px;
+  margin-top: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.residents-form button:hover {
+  background-color: #6e9982;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-inner {
+  font-family: var(--font-family);
+  color: #fff;
+  background-color: #2c4853;
+  padding: 50px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.preview-image {
+  width: 300px;
+  height: 300px;
+  border: 3px solid #5e8696;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center; /* Ajusta o posicionamento da imagem no centro */
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.popup button {
+  margin-top: 30px;
+  background-color: #a3d4bc;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup button:hover {
+  background-color: #6e9982;
+}
+
+.upload-button {
+  background-color: #5e8696; /* Cor de fundo do botão */
+  border: none;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 10px; /* Bordas arredondadas */
+  transition: background-color 0.3s ease; /* Efeito de transição para o hover */
+}
+
+.upload-button:hover {
+  background-color: #2c4853; /* Mudança de cor ao passar o mouse */
+}
+
+.upload-button span {
+  pointer-events: none; /* Impede que o span dentro do label afete a funcionalidade de click */
+}

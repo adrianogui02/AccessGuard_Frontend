@@ -10,3 +10,4 @@ export { default as Invite } from "./invite/Invite";
 export { default as InviteDetails } from "./invateDetails/InviteDetails";
 export { default as InviteSuccess } from "./inviteSuccess/InviteSuccess";
 export { default as InviteFailed } from "./inviteFailed/inviteFailed";
+export { default as Residents } from "./residents/Residents";

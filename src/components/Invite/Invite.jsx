@@ -120,8 +120,9 @@ const Invitations = () => {
               onChange={handleChange}
               required
             />
+            <label>Telefone do Convidado</label>
             <InputMask
-              mask="+55 (99) 99999-9999"
+              mask="(99) 99999-9999"
               value={formData.numeroTelefoneConvidado}
               onChange={handleChange}
               maskChar=" "

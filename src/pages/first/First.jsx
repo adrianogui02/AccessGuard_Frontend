@@ -28,7 +28,7 @@ export default function Login() {
         console.log("Usuário logado com sucesso");
         setAuthState({ user: { email, name, picture, idUser } });
         // Redireciona o usuário para a página home
-        navigate("/home");
+        navigate("/Home");
       } else {
         // Se o usuário não existir, cria um novo usuário
         const createUserResponse = await axios.post(
@@ -46,7 +46,7 @@ export default function Login() {
           console.log("Usuário criado e logado com sucesso");
 
           // Redirecione o usuário para a página home
-          navigate("/home");
+          navigate("/Home");
         } else {
           console.log("Erro ao criar usuário");
         }

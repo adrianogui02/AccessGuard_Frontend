@@ -13,12 +13,12 @@ export default function Header() {
   return (
     <div className="header">
       <div className="header-right">
-        <Link to="/home">
+        <Link to="/Home">
           <img src={logo} alt="Logo" className="logo" />
         </Link>
       </div>
       <div className="header-center">
-        <Link to="/moradores" className="header-link">
+        <Link to="/Residents" className="header-link">
           Moradores
         </Link>
         <Link to="/veiculos" className="header-link">
@@ -27,7 +27,7 @@ export default function Header() {
         <Link to="/reservas" className="header-link">
           Reservas
         </Link>
-        <Link to="/invite" className="header-link">
+        <Link to="/Invites" className="header-link">
           Convites
         </Link>
       </div>
