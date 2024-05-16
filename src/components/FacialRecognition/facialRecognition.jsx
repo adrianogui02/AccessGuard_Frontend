@@ -1,27 +1,27 @@
+import axios from "axios";
 import * as faceapi from "face-api.js";
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./styles.css";
 
 function FacialRecognition() {
-  const [modelsLoaded, setModelsLoaded] = React.useState(false);
-  const [captureVideo, setCaptureVideo] = React.useState(false);
-  const [referenceData, setReferenceData] = React.useState({
-    descriptor: null,
-    name: "",
-  });
-  const [matchInfo, setMatchInfo] = React.useState({
+  const [modelsLoaded, setModelsLoaded] = useState(false);
+  const [captureVideo, setCaptureVideo] = useState(false);
+  const [residents, setResidents] = useState([]);
+  const [matchInfo, setMatchInfo] = useState({
     isMatch: false,
     distance: null,
+    name: "",
+    photo: "",
   });
 
-  const videoRef = React.useRef(null);
-  const canvasRef = React.useRef(null);
+  const videoRef = useRef(null);
+  const canvasRef = useRef(null);
   const videoHeight = 480;
   const videoWidth = 640;
 
-  React.useEffect(() => {
-    const loadModels = async () => {
-      const MODEL_URL = "/Models";
+  useEffect(() => {
+    const loadModelsAndResidents = async () => {
+      const MODEL_URL = "/models";
       await Promise.all([
         faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
         faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
@@ -30,8 +30,34 @@ function FacialRecognition() {
         faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
       ]);
       setModelsLoaded(true);
+
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/resident/getAllResidents`
+        );
+        console.log(response.data);
+        const residentDescriptors = await Promise.all(
+          response.data.map(async (resident) => {
+            const img = await faceapi.fetchImage(resident.foto);
+            const detection = await faceapi
+              .detectSingleFace(img)
+              .withFaceLandmarks()
+              .withFaceDescriptor();
+            return {
+              id: resident.id,
+              name: resident.nome,
+              photo: resident.foto,
+              descriptor: detection.descriptor,
+            };
+          })
+        );
+        setResidents(residentDescriptors);
+      } catch (error) {
+        console.error("Failed to load residents", error);
+      }
     };
-    loadModels();
+
+    loadModelsAndResidents();
   }, []);
 
   const startVideo = () => {
@@ -48,6 +74,19 @@ function FacialRecognition() {
       });
   };
 
+  const stopVideo = () => {
+    const stream = videoRef.current.srcObject;
+    const tracks = stream.getTracks();
+    tracks.forEach((track) => track.stop());
+    setCaptureVideo(false);
+    setMatchInfo({
+      isMatch: false,
+      distance: null,
+      name: "",
+      photo: "",
+    });
+  };
+
   const handleVideoOnPlay = () => {
     const intervalId = setInterval(async () => {
       if (canvasRef.current) {
@@ -62,81 +101,68 @@ function FacialRecognition() {
           .withFaceLandmarks()
           .withFaceDescriptors();
 
-        if (detections.length > 0 && referenceData.descriptor) {
+        if (detections.length > 0) {
           detections.forEach((detection) => {
-            const distance = faceapi.euclideanDistance(
-              detection.descriptor,
-              referenceData.descriptor
-            );
-            if (distance < 0.6) {
-              setMatchInfo({ isMatch: true, distance });
+            const matchedResident = residents.reduce((best, resident) => {
+              const distance = faceapi.euclideanDistance(
+                detection.descriptor,
+                resident.descriptor
+              );
+              if (
+                distance < 0.6 &&
+                (best === null || distance < best.distance)
+              ) {
+                return { resident, distance };
+              }
+              return best;
+            }, null);
+
+            if (matchedResident) {
+              setMatchInfo({
+                isMatch: true,
+                distance: matchedResident.distance,
+                name: matchedResident.resident.name,
+                photo: matchedResident.resident.photo,
+              });
             } else {
-              setMatchInfo({ isMatch: false, distance: null });
+              setMatchInfo({
+                isMatch: false,
+                distance: null,
+                name: "Rosto não identificado",
+                photo: "",
+              });
             }
           });
+        } else {
+          setMatchInfo({
+            isMatch: false,
+            distance: null,
+            name: "Rosto não identificado",
+            photo: "",
+          });
         }
-
-        //faceapi.draw.drawDetections(canvasRef.current, detections);       //draw detections
-        //faceapi.draw.drawFaceLandmarks(canvasRef.current, detections);  //draw landmarks
       }
-    }, 1);
+    }, 5000);
     return () => clearInterval(intervalId);
-  };
-
-  const handleImageChange = async (event) => {
-    const file = event.target.files[0];
-    const image = await faceapi.bufferToImage(file);
-    const detection = await faceapi
-      .detectSingleFace(image)
-      .withFaceLandmarks()
-      .withFaceDescriptor();
-    if (detection) {
-      setReferenceData({
-        descriptor: detection.descriptor,
-        name: "Identified Person",
-      });
-    }
   };
 
   return (
     <>
       <div>
-        <input type="file" onChange={handleImageChange} />
         <div style={{ textAlign: "center", padding: "10px" }}>
           {captureVideo && modelsLoaded ? (
             <button
-              onClick={() => {
-                const stream = videoRef.current.srcObject;
-                const tracks = stream.getTracks();
-                tracks.forEach((track) => track.stop());
-                setCaptureVideo(false);
-              }}
-              style={{
-                cursor: "pointer",
-                backgroundColor: "green",
-                color: "white",
-                padding: "15px",
-                fontSize: "25px",
-                border: "none",
-                borderRadius: "10px",
-              }}
+              className="button-face-recognition-stop"
+              onClick={stopVideo}
             >
-              Close Webcam
+              Encerrar Captura
             </button>
           ) : (
             <button
               onClick={startVideo}
-              style={{
-                cursor: "pointer",
-                backgroundColor: "green",
-                color: "white",
-                padding: "15px",
-                fontSize: "25px",
-                border: "none",
-                borderRadius: "10px",
-              }}
+              className="button-face-recognition-start"
             >
-              Open Webcam
+              Iniciar Captura
             </button>
           )}
         </div>
@@ -159,13 +185,28 @@ function FacialRecognition() {
           </div>
         )}
       </div>
-      <div className="div-results">
-        {matchInfo.isMatch && (
-          <p className="results">{`Match Found! Distance: ${matchInfo.distance.toFixed(
-            2
-          )}`}</p>
-        )}
-      </div>
+      {captureVideo && (
+        <div className="div-results">
+          <div
+            className={`results-container ${
+              matchInfo.isMatch ? "" : "results-container-not-identified"
+            }`}
+          >
+            {matchInfo.isMatch ? (
+              <>
+                <img
+                  src={matchInfo.photo}
+                  alt={matchInfo.name}
+                  className="results-photo"
+                />
+                <p className="results">{matchInfo.name}</p>
+              </>
+            ) : (
+              <p className="results-not-identified">Rosto não identificado</p>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }

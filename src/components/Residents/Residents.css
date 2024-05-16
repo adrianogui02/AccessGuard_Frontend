@@ -37,8 +37,12 @@
   flex-direction: row;
   align-items: start;
   background-color: #6e9982;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
+.residents-list .resident-item:hover {
+  background-color: #567966;
+  transform: scale(1.025);
+}
 .residents-item-left {
   display: flex;
   flex-direction: column;

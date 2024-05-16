@@ -1,0 +1,10 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Match all files in the storage
+    match /{allPaths=**} {
+      // Allow read access from any origin (CORS)
+      allow read: if true;
+    }
+  }
+}
