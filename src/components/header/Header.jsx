@@ -21,10 +21,10 @@ export default function Header() {
         <Link to="/Residents" className="header-link">
           Moradores
         </Link>
-        <Link to="/veiculos" className="header-link">
+        <Link to="/Vehicles" className="header-link">
           Veículos
         </Link>
-        <Link to="/reservas" className="header-link">
+        <Link to="/Bookings" className="header-link">
           Reservas
         </Link>
         <Link to="/Invites" className="header-link">

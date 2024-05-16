@@ -70,7 +70,7 @@ const Residents = () => {
     setShowPopup(false);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/resident/create`,
+        `${process.env.REACT_APP_API_URL}/api/reservation/create`,
         {
           nome: residentData.nome,
           email: residentData.email,

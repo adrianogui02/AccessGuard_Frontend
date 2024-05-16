@@ -14,3 +14,5 @@ export { default as InviteDetails } from "./InviteDetails/InviteDetails";
 export { default as InviteSuccess } from "./InviteSuccess/InviteSuccess";
 export { default as InviteFailed } from "./InviteFailed/InviteFailed";
 export { default as Residents } from "./Residents/Residents";
+export { default as Bookings } from "./Booking/Booking";
+export { default as Vehicles } from "./Vehicles/Vehicles";

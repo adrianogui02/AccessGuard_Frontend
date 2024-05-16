@@ -1,0 +1,159 @@
+/* Estilo básico do contêiner e das seções */
+.bookings-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+}
+.bookings {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  font-family: var(--font-family);
+}
+
+/* Lista de reservas */
+.bookings-list {
+  max-height: 490px;
+  overflow-y: auto;
+  margin-top: 20px;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--font-family);
+}
+
+/* Itens individuais na lista de reservas */
+.bookings-list .bookings-item {
+  margin-bottom: 15px;
+  width: 70%;
+  padding: 20px;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  background-color: #6e9982;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.bookings-list .bookings-item:hover {
+  background-color: #567966;
+  transform: scale(1.025);
+}
+.bookings-item-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 20%;
+}
+.bookings-item-right {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+}
+.strong-reservation {
+  color: #0d141a;
+  font-size: 20px;
+}
+.bookings-item img {
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.bookings-item-right-content-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+.bookings-item-right-content-right {
+}
+.delete {
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+.delete:hover {
+  color: #0d141a;
+}
+
+/* Formulário para adicionar reservas */
+.bookings-form {
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-family: var(--font-family);
+}
+
+.bookings-form form {
+  margin-top: 20px;
+  text-align: left;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.bookings-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.bookings-form input[type="text"],
+.bookings-form input[type="email"],
+.bookings-form input[type="date"],  /* Adicionado estilo para o input de data */
+.bookings-form input[type="time"],  /* Adicionado estilo para o input de horário */
+.bookings-form select {
+  width: 100%;
+  padding: 8px;
+  font-family: var(--font-family);
+  color: #fff;
+  margin-bottom: 30px;
+  border: 1px solid transparent;
+  background-color: #0d141a;
+  border-radius: 10px;
+  outline: none;
+}
+
+.bookings-form input[type="text"]:focus,
+.bookings-form input[type="email"]:focus,
+.bookings-form input[type="date"]:focus,  /* Estilo ao receber foco para data */
+.bookings-form input[type="time"]:focus,  /* Estilo ao receber foco para horário */
+.bookings-form select:focus {
+  border: 1px solid #6e9982;
+}
+
+.div-button-create-bookings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.bookings-form button {
+  background-color: #a3d4bc;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 20px;
+  margin-top: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.bookings-form button:hover {
+  background-color: #6e9982;
+}

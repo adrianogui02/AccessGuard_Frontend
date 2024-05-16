@@ -7,6 +7,8 @@ import {
   InviteSuccess,
   InviteFailed,
   Residents,
+  Bookings,
+  Vehicles,
 } from "./pages";
 import { AuthProvider } from "../src/components/AuthContext/AuthContext"; // Importe o AuthProvider
 import { Routes, Route } from "react-router-dom";
@@ -23,6 +25,8 @@ function App() {
           <Route path="/QRCode/Success/:uuid" element={<InviteSuccess />} />
           <Route path="/QRCode/Failed/:uuid" element={<InviteFailed />} />
           <Route path="/Residents" element={<Residents />} />
+          <Route path="/Bookings" element={<Bookings />} />
+          <Route path="/Vehicles" element={<Vehicles />} />
         </Routes>
       </AuthProvider>
     </div>
