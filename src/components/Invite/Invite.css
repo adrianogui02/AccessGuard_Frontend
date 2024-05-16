@@ -5,8 +5,8 @@
 }
 
 .invitations-list {
-  max-height: 480px; /* Ajuste conforme necessário */
-  overflow-y: auto; /* Permite rolagem vertical quando o conteúdo excede a altura máxima */
+  max-height: 480px;
+  overflow-y: auto;
   margin-top: 40px;
   padding: 10px;
   color: #fff;

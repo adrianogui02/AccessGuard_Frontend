@@ -19,12 +19,11 @@ const InviteDetails = () => {
 
         // Verifica se o convite não é ativo e redireciona
         if (response.data && !response.data.ativo) {
-          navigate(`/QRCode/Failed/${uuid}`); // Substitua "/path-to-invalid-invite-page" pelo caminho correto
+          navigate(`/QRCode/Failed/${uuid}`);
         }
       } catch (error) {
         console.error("Erro ao buscar convite:", error);
-        // Opcional: adicione um tratamento ou redirecionamento também para falhas de fetch
-        navigate("/error-page"); // Supondo que você tenha uma página de erro
+        navigate("/error-page"); // Implementar pagina de erro ainda
       }
     };
 

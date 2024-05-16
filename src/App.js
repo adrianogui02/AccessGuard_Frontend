@@ -17,11 +17,22 @@ import { Routes, Route, useLocation } from "react-router-dom";
 function App() {
   const location = useLocation();
 
+  // Função para determinar se o Header deve ser exibido
+  const shouldShowHeader = () => {
+    const path = location.pathname;
+    // Verifica se o caminho atual é algum dos caminhos especiais onde o Header não deve ser mostrado
+    return !(
+      path === "/" ||
+      /^\/QRCode\/Details\/[^/]+$/.test(path) ||
+      /^\/QRCode\/Success\/[^/]+$/.test(path) ||
+      /^\/QRCode\/Failed\/[^/]+$/.test(path)
+    );
+  };
+
   return (
     <div>
       <AuthProvider>
-        {/* Renderize o Header apenas se não estiver na página First */}
-        {location.pathname !== "/" && <Header />}
+        {shouldShowHeader() && <Header />}
         <Routes>
           <Route path="/" element={<First />} />
           <Route path="/Home" element={<Home />} />

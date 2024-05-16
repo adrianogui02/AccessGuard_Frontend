@@ -1,5 +1,5 @@
 import React from "react";
-import "./Modal.css"; // Assuma que este arquivo contém os estilos para o modal
+import "./Modal.css";
 
 const Modal = ({ isOpen, close, user, logout }) => {
   if (!isOpen) return null;

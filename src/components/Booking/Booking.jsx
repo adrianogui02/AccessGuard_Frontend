@@ -16,7 +16,6 @@ const Bookings = () => {
     time: "",
   });
   const [bookings, setBookings] = useState([]);
-  console.log("reservas", bookings);
 
   useEffect(() => {
     fetchBookings();
@@ -81,7 +80,7 @@ const Bookings = () => {
       case "Salão de Festas":
         return salaoIcon;
       default:
-        return null; // Ou algum ícone padrão
+        return null;
     }
   };
 
@@ -143,7 +142,6 @@ const Bookings = () => {
               <option value="Churrasqueira">Churrasqueira</option>
               <option value="Quadra Poliesportiva">Quadra Poliesportiva</option>
               <option value="Salão de Festas">Salão de Festas</option>
-              {/* Adicione mais opções conforme necessário */}
             </select>
           </div>
           <div>

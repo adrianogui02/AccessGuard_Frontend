@@ -20,7 +20,6 @@ export default function Header() {
   }, [user]); // Dependência para re-renderização ao atualizar o usuário
 
   const handleLogout = () => {
-    // Implemente a lógica para limpar o estado e redirecionar para o login
     setAuthState({ user: null, logged: false }); // Supondo que setAuthState pode lidar com o logout
     localStorage.removeItem("user"); // Limpar localStorage
     navigate("/"); // Redireciona para a tela de login

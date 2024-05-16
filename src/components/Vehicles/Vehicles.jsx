@@ -128,7 +128,7 @@ const VehicleBookings = () => {
                     className="delete"
                     onClick={() => handleDeleteVehicle(vehicle._id)}
                   >
-                    Delete
+                    Excluir
                   </p>
                 </div>
               </div>
