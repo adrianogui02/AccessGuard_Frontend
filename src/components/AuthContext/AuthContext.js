@@ -1,9 +1,8 @@
-// AuthContext.js
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 
 const AuthActions = {
-  LOGIN: 'LOGIN',
-  LOGOUT: 'LOGOUT',
+  LOGIN: "LOGIN",
+  LOGOUT: "LOGOUT",
 };
 
 const authReducer = (state, action) => {
@@ -26,8 +25,8 @@ const authReducer = (state, action) => {
 };
 
 const initialAuthState = {
-  user: null,
-  logged: false,
+  user: JSON.parse(localStorage.getItem("user")) || null,
+  logged: !!localStorage.getItem("user"),
 };
 
 export const AuthContext = createContext();
@@ -41,16 +40,23 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     // Load user information from localStorage on initial render
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setAuthState({ user: JSON.parse(storedUser) });
+      dispatch({
+        type: AuthActions.LOGIN,
+        payload: { user: JSON.parse(storedUser) },
+      });
     }
   }, []);
 
   useEffect(() => {
-    // Save user information to localStorage whenever authState changes
-    localStorage.setItem('user', JSON.stringify(authState.user));
-  }, [authState]);
+    // Save or remove user information from localStorage whenever authState changes
+    if (authState.user) {
+      localStorage.setItem("user", JSON.stringify(authState.user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [authState.user]);
 
   return (
     <AuthContext.Provider value={{ authState, setAuthState }}>

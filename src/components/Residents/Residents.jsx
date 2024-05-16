@@ -55,6 +55,14 @@ const Residents = () => {
           <p>{resident.email}</p>
           <p>{resident.celular}</p>
         </div>
+        <div className="popup-resident-actions">
+          <button
+            className="popup-button-remove-resident"
+            onClick={() => handleDeleteResident(resident._id)}
+          >
+            Excluir Morador
+          </button>
+        </div>
       </>
     );
     setShowPopup(true);
@@ -70,7 +78,7 @@ const Residents = () => {
     setShowPopup(false);
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/resident/create`,
+        `${process.env.REACT_APP_API_URL}/api/reservation/create`,
         {
           nome: residentData.nome,
           email: residentData.email,
@@ -130,6 +138,19 @@ const Residents = () => {
       );
     } else {
       console.log("Nenhum arquivo selecionado");
+    }
+  };
+
+  const handleDeleteResident = async (residentId) => {
+    try {
+      await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/resident/delete/${residentId}`
+      );
+      console.log("Morador excluído com sucesso");
+      loadResidents(); // Atualizar a lista após excluir
+      handleClosePopup(); // Fechar o popup
+    } catch (error) {
+      console.error("Erro ao excluir morador:", error);
     }
   };
 

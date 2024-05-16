@@ -16,11 +16,11 @@
 .residents-list {
   max-height: 480px;
   overflow-y: auto;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 10px;
   color: #fff;
   text-align: center;
-  width: 100%; /* Ajuste a largura conforme necessário */
+  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -37,8 +37,12 @@
   flex-direction: row;
   align-items: start;
   background-color: #6e9982;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
+.residents-list .resident-item:hover {
+  background-color: #567966;
+  transform: scale(1.025);
+}
 .residents-item-left {
   display: flex;
   flex-direction: column;
@@ -59,7 +63,7 @@
   border-radius: 50%;
   border: 3px solid #2c4853;
   object-fit: cover;
-  object-position: center; /* Ajusta o posicionamento da imagem no centro */
+  object-position: center;
 }
 
 .popup-resident-title {
@@ -70,7 +74,7 @@
   width: 300px;
   height: 300px;
   object-fit: cover;
-  object-position: center; /* Ajusta o posicionamento da imagem no centro */
+  object-position: center;
   border: 3px solid #5e8696;
   border-radius: 50%;
   margin: 40px;
@@ -93,7 +97,7 @@
 }
 
 .residents-form form {
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: left;
   padding-left: 15%;
   padding-right: 15%;
@@ -174,7 +178,7 @@
   border: 3px solid #5e8696;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center; /* Ajusta o posicionamento da imagem no centro */
+  object-position: center;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -197,7 +201,7 @@
 }
 
 .upload-button {
-  background-color: #5e8696; /* Cor de fundo do botão */
+  background-color: #5e8696;
   border: none;
   font-family: var(--font-family);
   font-weight: 600;
@@ -207,14 +211,31 @@
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 10px; /* Bordas arredondadas */
-  transition: background-color 0.3s ease; /* Efeito de transição para o hover */
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .upload-button:hover {
-  background-color: #2c4853; /* Mudança de cor ao passar o mouse */
+  background-color: #2c4853;
 }
 
 .upload-button span {
-  pointer-events: none; /* Impede que o span dentro do label afete a funcionalidade de click */
+  pointer-events: none;
+}
+
+.popup-button-remove-resident {
+  margin-top: 30px;
+  background-color: #b86363;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 50px;
+  margin: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.popup-button-remove-resident:hover {
+  background-color: #8a4444;
 }

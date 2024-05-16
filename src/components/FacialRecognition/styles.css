@@ -3,7 +3,72 @@
   align-items: center;
   justify-content: center;
 }
+
+.button-face-recognition-start {
+  background-color: #a3d4bc;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 20px;
+  margin-top: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-face-recognition-start:hover {
+  background-color: #6e9982;
+}
+
+.button-face-recognition-stop {
+  background-color: #b86363;
+  font-family: var(--font-family);
+  font-weight: 600;
+  color: #0d141a;
+  padding: 10px 20px;
+  margin-top: 50px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.button-face-recognition-stop:hover {
+  background-color: #8a4444;
+}
 .results {
   font-family: var(--font-family);
   color: white;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+.results-not-identified {
+  font-family: var(--font-family);
+  color: white;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+.results-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #6e9982;
+  margin: 30px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.results-container-not-identified {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: #8a4444;
+  margin: 30px;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+.results-photo {
+  width: 50px;
+  border-radius: 10%;
+  margin-right: 20px;
 }

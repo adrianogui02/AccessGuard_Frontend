@@ -20,19 +20,20 @@
   font-family: var(--font-family);
   font-size: 22px;
   margin: 50px;
-  color: #fff; /* Cor padrão do texto dos links */
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s ease; /* Transição suave de 0.3 segundos */
+  transition: color 0.3s ease;
 }
 
-/* Estilo quando o mouse está sobre o link */
 .header-link:hover {
-  color: #a3d4bc; /* Cor do texto quando hover */
+  color: #a3d4bc;
 }
 
-/* Estilo quando o link está ativo (após ser clicado) */
 .header-link:active {
-  color: #a3d4bc; /* Cor do texto quando clicado */
+  color: #a3d4bc;
+}
+.header-link.active {
+  color: #a3d4bc;
 }
 
 .header-right {
@@ -50,8 +51,9 @@
 .user-name {
   font-family: var(--font-family);
   font-size: 22px;
-  color: #fff; /* Cor do texto do nome do usuário */
-  transition: color 0.3s ease; /* Transição suave de 0.3 segundos */
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s ease;
 }
 .user-name:hover {
   color: #a3d4bc;

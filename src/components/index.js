@@ -1,11 +1,3 @@
-export { default as Navbar } from "./navbar/Navbar";
-export { default as Bids } from "./bids/Bids";
-export { default as Footer } from "./footer/Footer";
-export { default as AccountInfo } from "./AccountInfo/accontInfo";
-export { default as AccountPopup } from "./AccontPopup/AccountPopup";
-export { default as Explorer } from "./explorer/Explorer";
-export { default as TokenList } from "./tokenList/tokenList";
-export { default as HistoryList } from "./historyList/historyList";
 export { default as Header } from "./header/Header";
 export { default as Invitations } from "./Invite/Invite";
 export { default as FacialRecognition } from "./FacialRecognition/facialRecognition";
@@ -14,3 +6,6 @@ export { default as InviteDetails } from "./InviteDetails/InviteDetails";
 export { default as InviteSuccess } from "./InviteSuccess/InviteSuccess";
 export { default as InviteFailed } from "./InviteFailed/InviteFailed";
 export { default as Residents } from "./Residents/Residents";
+export { default as Bookings } from "./Booking/Booking";
+export { default as Vehicles } from "./Vehicles/Vehicles";
+export { default as Modal } from "./Modal/Modal";

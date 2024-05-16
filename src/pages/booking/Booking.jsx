@@ -1,10 +1,10 @@
 import React from "react";
-import { FacialRecognition } from "../../components";
+import { Bookings } from "../../components";
 
 export default function Home() {
   return (
     <div>
-      <FacialRecognition />
+      <Bookings />
     </div>
   );
 }
