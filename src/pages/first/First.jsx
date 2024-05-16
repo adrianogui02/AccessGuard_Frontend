@@ -3,7 +3,7 @@ import "./first.css";
 import { GoogleLogin } from "@react-oauth/google";
 import logo from "../../assets/accessguard.png";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Corrigido
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../components/AuthContext/AuthContext";
 
@@ -17,7 +17,7 @@ export default function Login() {
       const { email, name, picture } = decoded;
 
       const response = await axios.get(
-        `http://localhost:3001/api/users/getByEmail/${email}`
+        `${process.env.REACT_APP_API_URL}/api/users/getByEmail/${email}`
       );
       if (response.data && response.data.length === 1) {
         const user = { email, name, picture, idUser: response.data[0]._id };
@@ -25,7 +25,7 @@ export default function Login() {
         navigate("/Home");
       } else {
         const createUserResponse = await axios.post(
-          `http://localhost:3001/api/users/create`,
+          `${process.env.REACT_APP_API_URL}/api/users/create`,
           {
             nome: name,
             email: email,
