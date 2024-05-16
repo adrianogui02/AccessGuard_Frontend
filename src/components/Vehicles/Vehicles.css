@@ -18,7 +18,7 @@
 .bookings-list {
   max-height: 490px;
   overflow-y: auto;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 10px;
   color: #fff;
   text-align: center;
@@ -46,16 +46,14 @@
   background-color: #567966;
   transform: scale(1.025);
 }
-.bookings-item-left {
+.vehicles-item-left {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: start;
   width: 20%;
 }
 .vehicles-item-right {
   display: flex;
-  width: 100%;
+  width: 80%;
   justify-content: space-between;
 }
 .strong-reservation {
@@ -63,22 +61,22 @@
   font-size: 20px;
 }
 .vehicles-item img {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
 }
 .vehicles-item-right-content-left {
   display: flex;
-  flex-direction: row;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between; /* This will manage spacing */
 }
 .vehicles-colum {
+  width: 170px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 10px;
 }
 .vehicles-item-right-content-right {
 }
@@ -93,35 +91,46 @@
   color: #0d141a;
 }
 
-.bookings-form form {
+.vehicles-form {
+  text-align: center;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  font-family: var(--font-family);
+}
+
+.vehicles-form form {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; /* This will manage spacing */
   text-align: center;
+  font-family: var(--font-family);
+  color: #fff;
 }
 
-.form-grid > div {
+.vehicles-form-grid > div {
   width: 48%; /* Adjust based on preference, here using nearly half-width */
   margin-bottom: 20px;
 }
 
-.bookings-form form {
-  margin-top: 20px;
+.vehicles-form form {
+  margin-top: 40px;
   text-align: left;
   padding-left: 15%;
   padding-right: 15%;
 }
 
-.bookings-form label {
+.vehicles-form label {
   display: block;
   margin-bottom: 5px;
 }
 
-.bookings-form input[type="text"],
-  .bookings-form input[type="email"],
-  .bookings-form input[type="date"],  /* Adicionado estilo para o input de data */
-  .bookings-form input[type="time"],  /* Adicionado estilo para o input de horário */
-  .bookings-form select {
+.vehicles-form input[type="text"],
+  .vehicles-form input[type="email"],
+  .vehicles-form input[type="date"],  /* Adicionado estilo para o input de data */
+  .vehicles-form input[type="time"],  /* Adicionado estilo para o input de horário */
+  .vehicles-form select {
   width: 100%;
   padding: 8px;
   font-family: var(--font-family);
@@ -133,22 +142,22 @@
   outline: none;
 }
 
-.bookings-form input[type="text"]:focus,
-  .bookings-form input[type="email"]:focus,
-  .bookings-form input[type="date"]:focus,  /* Estilo ao receber foco para data */
-  .bookings-form input[type="time"]:focus,  /* Estilo ao receber foco para horário */
-  .bookings-form select:focus {
+.vehicles-form input[type="text"]:focus,
+  .vehicles-form input[type="email"]:focus,
+  .vehicles-form input[type="date"]:focus,  /* Estilo ao receber foco para data */
+  .vehicles-form input[type="time"]:focus,  /* Estilo ao receber foco para horário */
+  .vehicles-form select:focus {
   border: 1px solid #6e9982;
 }
 
-.div-button-create-bookings {
+.div-button-create-vehicles {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
-.bookings-form button {
+.vehicles-form button {
   background-color: #a3d4bc;
   font-family: var(--font-family);
   font-weight: 600;
@@ -161,6 +170,6 @@
   transition: background-color 0.3s ease;
 }
 
-.bookings-form button:hover {
+.vehicles-form button:hover {
   background-color: #6e9982;
 }

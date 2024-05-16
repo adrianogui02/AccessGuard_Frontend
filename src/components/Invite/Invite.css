@@ -7,7 +7,7 @@
 .invitations-list {
   max-height: 480px; /* Ajuste conforme necessário */
   overflow-y: auto; /* Permite rolagem vertical quando o conteúdo excede a altura máxima */
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 10px;
   color: #fff;
   text-align: center;
@@ -79,7 +79,7 @@ strong.strong {
 }
 
 .invitations-form form {
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: left;
   padding-left: 15%;
   padding-right: 15%;

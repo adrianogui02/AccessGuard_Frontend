@@ -16,7 +16,7 @@
 .residents-list {
   max-height: 480px;
   overflow-y: auto;
-  margin-top: 20px;
+  margin-top: 40px;
   padding: 10px;
   color: #fff;
   text-align: center;
@@ -97,7 +97,7 @@
 }
 
 .residents-form form {
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: left;
   padding-left: 15%;
   padding-right: 15%;

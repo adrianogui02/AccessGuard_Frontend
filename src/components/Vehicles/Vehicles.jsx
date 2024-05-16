@@ -3,6 +3,7 @@ import axios from "axios";
 import InputMask from "react-input-mask";
 import "./Vehicles.css";
 import { useAuth } from "../AuthContext/AuthContext";
+import vehicleIcon from "../../assets/Icons/car.png";
 
 const VehicleBookings = () => {
   const { authState } = useAuth();
@@ -107,6 +108,9 @@ const VehicleBookings = () => {
         <div className="bookings-list">
           {vehicles.map((vehicle, index) => (
             <div key={index} className="bookings-item">
+              <div className="vehicles-item-left">
+                <img src={vehicleIcon} alt={vehicle.brand} />
+              </div>
               <div className="vehicles-item-right">
                 <div className="vehicles-item-right-content-left">
                   <div className="vehicles-colum">
@@ -133,9 +137,9 @@ const VehicleBookings = () => {
         </div>
       </div>
 
-      <div className="bookings-form">
+      <div className="vehicles-form">
         <h2>Adicionar Veículo</h2>
-        <form onSubmit={handleSubmit} className="form-grid">
+        <form onSubmit={handleSubmit} className="vehicles-form-grid">
           <div>
             <label>Marca</label>
             <select
@@ -194,9 +198,9 @@ const VehicleBookings = () => {
             />
           </div>
         </form>
-        <div className="div-button-create-bookings">
+        <div className="div-button-create-vehicles">
           <button type="submit" onClick={handleSubmit}>
-            Add Vehicle
+            Adicionar Veículo
           </button>
         </div>
       </div>

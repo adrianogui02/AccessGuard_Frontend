@@ -34,6 +34,9 @@
 .header-link:active {
   color: #a3d4bc; /* Cor do texto quando clicado */
 }
+.header-link.active {
+  color: #a3d4bc; /* Cor do link quando ativo (selecionado) */
+}
 
 .header-right {
   display: flex;
@@ -50,6 +53,7 @@
 .user-name {
   font-family: var(--font-family);
   font-size: 22px;
+  cursor: pointer;
   color: #fff; /* Cor do texto do nome do usuário */
   transition: color 0.3s ease; /* Transição suave de 0.3 segundos */
 }

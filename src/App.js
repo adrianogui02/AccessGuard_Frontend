@@ -10,13 +10,18 @@ import {
   Bookings,
   Vehicles,
 } from "./pages";
-import { AuthProvider } from "../src/components/AuthContext/AuthContext"; // Importe o AuthProvider
-import { Routes, Route } from "react-router-dom";
+import { Header } from "./components";
+import { AuthProvider } from "../src/components/AuthContext/AuthContext";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div>
       <AuthProvider>
+        {/* Renderize o Header apenas se não estiver na página First */}
+        {location.pathname !== "/" && <Header />}
         <Routes>
           <Route path="/" element={<First />} />
           <Route path="/Home" element={<Home />} />
